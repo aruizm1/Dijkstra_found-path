@@ -27,8 +27,8 @@
             this.barMenu = new System.Windows.Forms.ToolStrip();
             this.btnMinWay = new System.Windows.Forms.ToolStripButton();
             this.btnMaxWay = new System.Windows.Forms.ToolStripButton();
-            this.btnReset = new System.Windows.Forms.ToolStripButton();
             this.btnAdyacents = new System.Windows.Forms.ToolStripButton();
+            this.btnReset = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblDistancia = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblrDistancia = new System.Windows.Forms.ToolStripStatusLabel();
@@ -117,25 +117,25 @@
             this.btnMaxWay.Text = "Camino Largo";
             this.btnMaxWay.Click += new System.EventHandler(this.btnMaxWay_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
-            this.btnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(49, 24);
-            this.btnReset.Text = "Reset";
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
             // btnAdyacents
             // 
             this.btnAdyacents.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnAdyacents.Image = ((System.Drawing.Image)(resources.GetObject("btnAdyacents.Image")));
             this.btnAdyacents.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAdyacents.Name = "btnAdyacents";
-            this.btnAdyacents.Size = new System.Drawing.Size(78, 24);
-            this.btnAdyacents.Text = "Adjacents";
+            this.btnAdyacents.Size = new System.Drawing.Size(86, 24);
+            this.btnAdyacents.Text = "Adjacentes";
             this.btnAdyacents.Click += new System.EventHandler(this.btnAdyacents_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
+            this.btnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(70, 24);
+            this.btnReset.Text = "Reiniciar";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // statusStrip1
             // 
