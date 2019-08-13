@@ -21,20 +21,20 @@ namespace GrafosMap.Business
             this.verticesCount = (int)Math.Sqrt(graph.Length);
             this.distance = new double[verticesCount];
             this.shortestPathTreeSet = new bool[verticesCount];
-            this.path = new int[verticesCount];
+            this.Path = new int[verticesCount];
             this.graph = graph;
             this.source = source;
         }
         #endregion
 
         #region Private
-        public int[] RunDijkstraMin()
+        public void RunDijkstraMin()
         {
             for (int i = 0; i < this.verticesCount; ++i)
             {
                 this.distance[i] = int.MaxValue;
                 this.shortestPathTreeSet[i] = false;
-                this.path[i] = -1;
+                this.Path[i] = -1;
             }
 
             this.distance[this.source] = 0;
@@ -49,12 +49,10 @@ namespace GrafosMap.Business
                     if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
                     {
                         distance[v] = distance[u] + graph[u, v];
-                        path[v] = u;
+                        Path[v] = u;
                     }
                 }
             }
-
-            return this.path;
         }
 
         private int MinimumDistance()
@@ -73,6 +71,10 @@ namespace GrafosMap.Business
 
             return minIndex;
         }
+        #endregion
+
+        #region Properties
+        public int[] Path { get => path; set => path = value; }
         #endregion
     }
 }

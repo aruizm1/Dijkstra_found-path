@@ -26,8 +26,9 @@
             this.btnZoomP = new System.Windows.Forms.Button();
             this.barMenu = new System.Windows.Forms.ToolStrip();
             this.btnMinWay = new System.Windows.Forms.ToolStripButton();
-            this.btnReset = new System.Windows.Forms.ToolStripButton();
             this.btnMaxWay = new System.Windows.Forms.ToolStripButton();
+            this.btnReset = new System.Windows.Forms.ToolStripButton();
+            this.btnAdyacents = new System.Windows.Forms.ToolStripButton();
             this.barMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             this.barMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnMinWay,
             this.btnMaxWay,
+            this.btnAdyacents,
             this.btnReset});
             this.barMenu.Location = new System.Drawing.Point(0, 0);
             this.barMenu.Name = "barMenu";
@@ -101,6 +103,16 @@
             this.btnMinWay.Text = "Camino Minimo";
             this.btnMinWay.Click += new System.EventHandler(this.btnMinWay_Click);
             // 
+            // btnMaxWay
+            // 
+            this.btnMaxWay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnMaxWay.Image = ((System.Drawing.Image)(resources.GetObject("btnMaxWay.Image")));
+            this.btnMaxWay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMaxWay.Name = "btnMaxWay";
+            this.btnMaxWay.Size = new System.Drawing.Size(106, 24);
+            this.btnMaxWay.Text = "Camino Largo";
+            this.btnMaxWay.Click += new System.EventHandler(this.btnMaxWay_Click);
+            // 
             // btnReset
             // 
             this.btnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -111,15 +123,15 @@
             this.btnReset.Text = "Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnMaxWay
+            // btnAdyacents
             // 
-            this.btnMaxWay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnMaxWay.Image = ((System.Drawing.Image)(resources.GetObject("btnMaxWay.Image")));
-            this.btnMaxWay.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnMaxWay.Name = "btnMaxWay";
-            this.btnMaxWay.Size = new System.Drawing.Size(106, 24);
-            this.btnMaxWay.Text = "Camino Largo";
-            this.btnMaxWay.Click += new System.EventHandler(this.btnMaxWay_Click);
+            this.btnAdyacents.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnAdyacents.Image = ((System.Drawing.Image)(resources.GetObject("btnAdyacents.Image")));
+            this.btnAdyacents.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdyacents.Name = "btnAdyacents";
+            this.btnAdyacents.Size = new System.Drawing.Size(78, 24);
+            this.btnAdyacents.Text = "Adjacents";
+            this.btnAdyacents.Click += new System.EventHandler(this.btnAdyacents_Click);
             // 
             // MapGrafo
             // 
@@ -149,6 +161,7 @@
         public System.Windows.Forms.ToolStripButton btnMinWay;
         public System.Windows.Forms.ToolStripButton btnReset;
         private System.Windows.Forms.ToolStripButton btnMaxWay;
+        private System.Windows.Forms.ToolStripButton btnAdyacents;
     }
 }
 

@@ -153,20 +153,34 @@ namespace GrafosMap.Client
         #region Events
         private void Gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            this.countMark++;
-            int key = dataMarkers.places.Where(p => p.Value.name == item.ToolTipText).FirstOrDefault().Key;
-
-            if (this.countMark == 1)
+            if (e.Button == MouseButtons.Left)
             {
-                source = key;
-                ChangeColorMark(item, key);
+                this.countMark++;
+                int key = dataMarkers.places.Where(p => p.Value.name == item.ToolTipText).FirstOrDefault().Key;
+
+                if (this.countMark == 1)
+                {
+                    source = key;
+                    ChangeColorMark(item, key);
+                }
+
+                if (this.countMark == 2)
+                {
+                    this.end = key;
+                    ChangeColorMark(item, key);
+                }
             }
 
-            if (this.countMark == 2)
+            if(e.Button == MouseButtons.Right)
             {
-                this.end = key;
-                ChangeColorMark(item, key);
-            } 
+                if (this.countMark == 0)
+                {
+                    int key = dataMarkers.places.Where(p => p.Value.name == item.ToolTipText).FirstOrDefault().Key;
+                    source = key;
+                    ChangeColorMark(item, key);
+                    this.countMark = 2;
+                }
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -189,7 +203,8 @@ namespace GrafosMap.Client
             if (this.countMark == 2)
             {
                 this.dijkstraMin = new DijkstraMin(auxMatrix, this.source);
-                this.path = dijkstraMin.RunDijkstraMin();
+                dijkstraMin.RunDijkstraMin();
+                this.path = dijkstraMin.Path;
                 int key = path[this.end];
 
                 if (key == -1)
@@ -246,6 +261,21 @@ namespace GrafosMap.Client
             else
             {
                 MessageBox.Show("Debe seleccionar un inicio y un destino.", "Informacion");
+            }
+        }
+
+        private void btnAdyacents_Click(object sender, EventArgs e)
+        {
+            DijkstraMin dijkstraMinAdj = new DijkstraMin(auxMatrix, 0);
+            dijkstraMinAdj.RunDijkstraMin();
+
+            for (int i = 0;i< (int)Math.Sqrt(dataMarkers.arcs.Length); i++)
+            {
+                if (dataMarkers.arcs[this.source, i] != 0)
+                {
+                    GMapMarker item = new GMarkerGoogle(new PointLatLng(dataMarkers.places[source].latitude, dataMarkers.places[source].longitud), GMarkerGoogleType.green_dot);
+                    ChangeColorMark(item, i);
+                } 
             }
         }
         #endregion
