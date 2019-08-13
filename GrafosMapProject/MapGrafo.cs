@@ -59,8 +59,8 @@ namespace GrafosMap.Client
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this.UploadMarkers();
             this.UploadRoutes();
+            this.UploadMarkers();
             gmap.Zoom++;
             gmap.Zoom--;
         }
@@ -227,7 +227,7 @@ namespace GrafosMap.Client
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un inicio y un destino.", "Informacion");
+                MessageBox.Show("Debe seleccionar un inicio y un destino con el click izquierdo.", "Informacion");
             }
             
         }
@@ -260,22 +260,30 @@ namespace GrafosMap.Client
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un inicio y un destino.", "Informacion");
+                MessageBox.Show("Debe seleccionar un inicio y un destino con el click izquierdo.", "Informacion");
             }
         }
 
         private void btnAdyacents_Click(object sender, EventArgs e)
         {
-            DijkstraMin dijkstraMinAdj = new DijkstraMin(auxMatrix, 0);
-            dijkstraMinAdj.RunDijkstraMin();
-
-            for (int i = 0;i< (int)Math.Sqrt(dataMarkers.arcs.Length); i++)
+            if (this.countMark == 2)
             {
-                if (dataMarkers.arcs[this.source, i] != 0)
+                DijkstraMin dijkstraMinAdj = new DijkstraMin(auxMatrix, 0);
+                dijkstraMinAdj.RunDijkstraMin();
+
+                for (int i = 0; i < (int)Math.Sqrt(dataMarkers.arcs.Length); i++)
                 {
-                    GMapMarker item = new GMarkerGoogle(new PointLatLng(dataMarkers.places[source].latitude, dataMarkers.places[source].longitud), GMarkerGoogleType.green_dot);
-                    ChangeColorMark(item, i);
-                } 
+                    if (dataMarkers.arcs[this.source, i] != 0)
+                    {
+                        GMapMarker item = new GMarkerGoogle(new PointLatLng(dataMarkers.places[source].latitude, dataMarkers.places[source].longitud), GMarkerGoogleType.green_dot);
+                        ChangeColorRoute(source, i);
+                        ChangeColorMark(item, i); 
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un marcador con el click derecho.", "Informacion");
             }
         }
         #endregion
