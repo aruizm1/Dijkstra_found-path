@@ -32,6 +32,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblDistancia = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblrDistancia = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtDistance = new System.Windows.Forms.RichTextBox();
             this.barMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +94,7 @@
             this.btnReset});
             this.barMenu.Location = new System.Drawing.Point(0, 0);
             this.barMenu.Name = "barMenu";
-            this.barMenu.Size = new System.Drawing.Size(1262, 27);
+            this.barMenu.Size = new System.Drawing.Size(1571, 27);
             this.barMenu.TabIndex = 4;
             this.barMenu.Text = "barMenu";
             // 
@@ -145,7 +146,7 @@
             this.lblrDistancia});
             this.statusStrip1.Location = new System.Drawing.Point(0, 683);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1262, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1571, 25);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -161,11 +162,20 @@
             this.lblrDistancia.Size = new System.Drawing.Size(17, 20);
             this.lblrDistancia.Text = "0";
             // 
+            // txtDistance
+            // 
+            this.txtDistance.Location = new System.Drawing.Point(1257, 31);
+            this.txtDistance.Name = "txtDistance";
+            this.txtDistance.Size = new System.Drawing.Size(302, 629);
+            this.txtDistance.TabIndex = 6;
+            this.txtDistance.Text = "";
+            // 
             // MapGrafo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 708);
+            this.ClientSize = new System.Drawing.Size(1571, 708);
+            this.Controls.Add(this.txtDistance);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.barMenu);
             this.Controls.Add(this.btnZoomP);
@@ -196,6 +206,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblDistancia;
         private System.Windows.Forms.ToolStripStatusLabel lblrDistancia;
+        private System.Windows.Forms.RichTextBox txtDistance;
     }
 }
 

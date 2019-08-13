@@ -101,6 +101,7 @@ namespace GrafosMap.Client
                         route.Stroke = new Pen(Color.Blue, 3);
                         routes.Routes.Add(route);
                         dataMarkers.arcs[i, j] = route.Distance;
+                        ShowDistances();
                     }
                 }
             }
@@ -147,6 +148,27 @@ namespace GrafosMap.Client
             this.UploadRoutes();
             gmap.Zoom--;
             gmap.Zoom++;
+        }
+
+        protected void ShowDistances()
+        {
+            string textInf = $"Distancia por tramo: \r\n"+
+                $" \r\n";
+            
+            for(int i = 0;i< (int)Math.Sqrt(dataMarkers.arcs.Length);i++)
+            {
+                for(int j = 0; j < (int)Math.Sqrt(dataMarkers.arcs.Length); j++)
+                {
+                    if(dataMarkers.arcs[i, j] > 0)
+                    {
+                        textInf = textInf + $"{dataMarkers.places[i].name} a {dataMarkers.places[j].name}\r\n" +
+                        $"Distancia: {dataMarkers.arcs[i, j].ToString("0.000")} Km\r\n"+
+                        $" \r\n";
+                    }
+                    
+                } 
+            }
+            txtDistance.Text = textInf;
         }
         #endregion
 
