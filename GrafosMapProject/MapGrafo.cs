@@ -228,7 +228,7 @@ namespace GrafosMap.Client
                 dijkstraMin.RunDijkstraMin();
                 this.path = dijkstraMin.Path;
                 int key = path[this.end];
-                lblrDistancia.Text = dijkstraMin.Distance[this.end].ToString();
+                lblrDistancia.Text = dijkstraMin.Distance[this.end].ToString("0.000");
 
                 if (key == -1)
                 {
