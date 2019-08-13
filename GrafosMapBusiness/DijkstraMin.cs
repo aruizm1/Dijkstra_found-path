@@ -19,7 +19,7 @@ namespace GrafosMap.Business
         public DijkstraMin(double[,] graph, int source)
         {
             this.verticesCount = (int)Math.Sqrt(graph.Length);
-            this.distance = new double[verticesCount];
+            this.Distance = new double[verticesCount];
             this.shortestPathTreeSet = new bool[verticesCount];
             this.Path = new int[verticesCount];
             this.graph = graph;
@@ -32,12 +32,12 @@ namespace GrafosMap.Business
         {
             for (int i = 0; i < this.verticesCount; ++i)
             {
-                this.distance[i] = int.MaxValue;
+                this.Distance[i] = int.MaxValue;
                 this.shortestPathTreeSet[i] = false;
                 this.Path[i] = -1;
             }
 
-            this.distance[this.source] = 0;
+            this.Distance[this.source] = 0;
 
             for (int count = 0; count < this.verticesCount - 1; ++count)
             {
@@ -46,9 +46,9 @@ namespace GrafosMap.Business
 
                 for (int v = 0; v < verticesCount; ++v)
                 {
-                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
+                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && Distance[u] != int.MaxValue && Distance[u] + graph[u, v] < Distance[v])
                     {
-                        distance[v] = distance[u] + graph[u, v];
+                        Distance[v] = Distance[u] + graph[u, v];
                         Path[v] = u;
                     }
                 }
@@ -62,9 +62,9 @@ namespace GrafosMap.Business
 
             for (int v = 0; v < verticesCount; ++v)
             {
-                if (shortestPathTreeSet[v] == false && distance[v] <= min)
+                if (shortestPathTreeSet[v] == false && Distance[v] <= min)
                 {
-                    min = distance[v];
+                    min = Distance[v];
                     minIndex = v;
                 }
             }
@@ -75,6 +75,7 @@ namespace GrafosMap.Business
 
         #region Properties
         public int[] Path { get => path; set => path = value; }
+        public double[] Distance { get => distance; set => distance = value; }
         #endregion
     }
 }
