@@ -146,6 +146,8 @@ namespace GrafosMap.Client
             gmap.Overlays.Remove(this.routes);
             this.UploadMarkers();
             this.UploadRoutes();
+            lblrDistancia.Text = "0";
+            gmap.Zoom = 13;
             gmap.Zoom--;
             gmap.Zoom++;
         }
