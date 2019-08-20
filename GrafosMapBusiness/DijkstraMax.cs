@@ -8,7 +8,7 @@ namespace GrafosMap.Business
     {
         #region Fields
         private int verticesCount;
-        double[] distance;
+        public double[] distance;
         private bool[] largestPathTreeSet;
         private int[] path;
         private double[,] graph;
@@ -38,7 +38,6 @@ namespace GrafosMap.Business
             }
 
             this.distance[this.source] = 0;
-
             for (int count = 0; count < this.verticesCount - 1; ++count)
             {
                 int u = MaximumDistance();
@@ -53,7 +52,6 @@ namespace GrafosMap.Business
                     }
                 }
             }
-
             return this.path;
         }
 
@@ -70,7 +68,6 @@ namespace GrafosMap.Business
                     maxIndex = v;
                 }
             }
-
             return maxIndex;
         }
         #endregion

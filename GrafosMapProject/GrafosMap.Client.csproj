@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +91,10 @@
   <ItemGroup>
     <Content Include="dlls\GMap.NET.Core.dll" />
     <Content Include="dlls\GMap.NET.WindowsForms.dll" />
+    <None Include="Resources\Djistra.png" />
+    <None Include="Resources\favicon.ico" />
+    <None Include="Resources\UCenfotec-logo-horizontal-blanco.png" />
+    <None Include="Resources\logo-cenfotec-fb.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GrafosMap.DataSource\GrafosMap.DataSource.csproj">

@@ -146,31 +146,11 @@ namespace GrafosMap.Client
             gmap.Overlays.Remove(this.routes);
             this.UploadMarkers();
             this.UploadRoutes();
-            lblrDistancia.Text = "0";
-            gmap.Zoom = 13;
             gmap.Zoom--;
             gmap.Zoom++;
-        }
-
-        protected void ShowDistances()
-        {
-            string textInf = $"Distancia por tramo: \r\n"+
-                $" \r\n";
-            
-            for(int i = 0;i< (int)Math.Sqrt(dataMarkers.arcs.Length);i++)
-            {
-                for(int j = 0; j < (int)Math.Sqrt(dataMarkers.arcs.Length); j++)
-                {
-                    if(dataMarkers.arcs[i, j] > 0)
-                    {
-                        textInf = textInf + $"{dataMarkers.places[i].name} a {dataMarkers.places[j].name}\r\n" +
-                        $"Distancia: {dataMarkers.arcs[i, j].ToString("0.000")} Km\r\n"+
-                        $" \r\n";
-                    }
-                    
-                } 
-            }
-            txtDistance.Text = textInf;
+            this.lblPointA.Text = "";
+            this.lblPointB.Text = "";
+            this.lblDistance.Text = "";
         }
         #endregion
 
@@ -186,12 +166,14 @@ namespace GrafosMap.Client
                 {
                     source = key;
                     ChangeColorMark(item, key);
+                    this.lblPointA.Text = dataMarkers.places[key].name;
                 }
 
                 if (this.countMark == 2)
                 {
                     this.end = key;
                     ChangeColorMark(item, key);
+                    this.lblPointB.Text = dataMarkers.places[key].name;
                 }
             }
 
@@ -222,7 +204,7 @@ namespace GrafosMap.Client
             gmap.Zoom--;
         }
 
-        private void btnMinWay_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             if (this.countMark == 2)
             {
@@ -230,7 +212,7 @@ namespace GrafosMap.Client
                 dijkstraMin.RunDijkstraMin();
                 this.path = dijkstraMin.Path;
                 int key = path[this.end];
-                lblrDistancia.Text = dijkstraMin.Distance[this.end].ToString("0.000");
+                lblDistance.Text = Math.Round(dijkstraMin.Distance[this.end], 2).ToString() + " Kms";
 
                 if (key == -1)
                 {
@@ -243,28 +225,28 @@ namespace GrafosMap.Client
                 }
 
                 while (key != this.source && key != -1)
-                { 
+                {
                     GMapMarker item = new GMarkerGoogle(new PointLatLng(dataMarkers.places[key].latitude, dataMarkers.places[key].longitud), GMarkerGoogleType.green_dot);
                     ChangeColorRoute(key, path[key]);
-                    ChangeColorMark(item,key);
+                    ChangeColorMark(item, key);
                     key = path[key];
-                }  
+                }
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un inicio y un destino con el click izquierdo.", "Informacion");
+                this.Reset();
             }
-            
         }
 
-        private void btnMaxWay_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (this.countMark == 2)
             {
                 this.dijkstraMax = new DijkstraMax(auxMatrix, this.source);
                 this.path = dijkstraMax.RunDijkstraMax();
                 int key = path[this.end];
-
+                lblDistance.Text = Math.Round(dijkstraMax.distance[this.end], 2).ToString() + " Kms";
                 if (key == -1)
                 {
                     MessageBox.Show("No se encuentra una ruta para su destino.", "Informacion");
@@ -281,15 +263,17 @@ namespace GrafosMap.Client
                     ChangeColorMark(item, key);
                     ChangeColorRoute(key, path[key]);
                     key = path[key];
+
                 }
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un inicio y un destino con el click izquierdo.", "Informacion");
+                this.Reset();
             }
         }
 
-        private void btnAdyacents_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             if (this.countMark == 2)
             {
@@ -302,15 +286,43 @@ namespace GrafosMap.Client
                     {
                         GMapMarker item = new GMarkerGoogle(new PointLatLng(dataMarkers.places[source].latitude, dataMarkers.places[source].longitud), GMarkerGoogleType.green_dot);
                         ChangeColorRoute(source, i);
-                        ChangeColorMark(item, i); 
+                        ChangeColorMark(item, i);
                     }
                 }
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un marcador con el click derecho.", "Informacion");
+                this.Reset();
             }
         }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            this.Reset();
+        }
         #endregion
+
+        protected void ShowDistances()
+        {
+            string textInf = $"Distancia por tramo: \r\n" +
+                $" \r\n";
+
+            for (int i = 0; i < (int)Math.Sqrt(dataMarkers.arcs.Length); i++)
+            {
+                for (int j = 0; j < (int)Math.Sqrt(dataMarkers.arcs.Length); j++)
+                {
+                    if (dataMarkers.arcs[i, j] > 0)
+                    {
+                        textInf = textInf + $"{dataMarkers.places[i].name} a {dataMarkers.places[j].name}\r\n" +
+                        $"Distancia: {dataMarkers.arcs[i, j].ToString("0.000")} Km\r\n" +
+                        $" \r\n";
+                    }
+
+                }
+            }
+            txtDistance.Text = textInf;
+        }
     }
+
 }
